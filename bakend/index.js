@@ -7,7 +7,7 @@ const app = express();
 
 // Enable CORS for the frontend
 app.use(cors({
-  origin: "*", // Frontend URL
+  origin: "", // Frontend URL
   
 }));
 app.get("/", (req, res) => {
