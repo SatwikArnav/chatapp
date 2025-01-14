@@ -8,7 +8,7 @@ import Chat from './chat';
 import io from "socket.io-client";
 import { io } from "socket.io-client";
 
-const socket = io("https://chatapp-1-dmnu.onrender.com");
+const socket = io("https://chatapp-2-cj5m.onrender.com");
 
 
 function App() {
