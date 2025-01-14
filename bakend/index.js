@@ -7,7 +7,7 @@ const app = express();
 
 // Enable CORS for the frontend
 app.use(cors({
-  origin: "https://chatapp-39y3.vercel.app", // Frontend URL
+  origin: "*", // Frontend URL
   methods: ["GET", "POST"],
   credentials: true,
 }));
@@ -18,7 +18,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO server with proper CORS configuration
 const io = new Server(server, {
   cors: {
-    origin: "https://chatapp-39y3.vercel.app", // Frontend URL
+    origin: "*", // Frontend URL
     methods: ["GET", "POST"],
     credentials: true,
   },
