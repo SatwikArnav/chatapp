@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
   origin: "*", // Frontend URL
   methods: ["GET", "POST"],
-  credentials: true,
+  
 }));
 
 // Create HTTP server
@@ -20,7 +20,7 @@ const io = new Server(server, {
   cors: {
     origin: "*", // Frontend URL
     methods: ["GET", "POST"],
-    credentials: true,
+   
   },
 });
 
