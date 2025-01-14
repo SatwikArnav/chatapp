@@ -9,9 +9,12 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://chatass.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
+
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
