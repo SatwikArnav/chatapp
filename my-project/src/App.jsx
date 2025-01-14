@@ -8,10 +8,7 @@ import Chat from './chat';
 import io from "socket.io-client";
 import { io } from "socket.io-client";
 
-const socket = io("https://chatapp-4r73.vercel.app", {
-  withCredentials: true,
-  transports: ["websocket", "polling"], // Include polling as a fallback
-});
+const socket = io("https://chatapp-1-dmnu.onrender.com");
 
 
 function App() {
