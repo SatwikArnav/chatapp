@@ -3,16 +3,22 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
-app.use(cors());
+
+app.use(cors({
+  origin: "https://chatapp-39y3.vercel.app", // Frontend URL
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*"
+    origin: "https://chatapp-39y3.vercel.app", // Frontend URL
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
-
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
@@ -24,7 +30,7 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
-    console.log("data:",data);
+    console.log("data:", data);
   });
 
   socket.on("disconnect", () => {
