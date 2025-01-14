@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/socket.io/(.*)",
+      "destination": "https://chatapp-4r73.vercel.app/socket.io/$1"
+    }
+  ]
+}
