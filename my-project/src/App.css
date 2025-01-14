@@ -1,0 +1,74 @@
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fade-in-down 0.5s ease-in-out;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.5s ease-in-out;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-in-out;
+}
+
+.animate-spin-slow {
+    animation: spin-slow 4s linear infinite;
+}
+@keyframes spin-slow-reverse {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.animate-spin-slow-reverse {
+    animation: spin-slow-reverse 4s linear infinite;
+}
+
+
+.animate-pulse-on-hover:hover {
+    animation: pulse 1s infinite;
+}
