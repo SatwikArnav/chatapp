@@ -8,7 +8,9 @@ const Card = ({ socket }) => {
 
   const joinRoom = () => {
     if (username !== "" && roomName !== "") {
-      socket.emit("join_room", roomName);
+      socket.emit("join_room", {
+        username,
+        roomName});
       navigate(`/chat/${username}/${roomName}`);
     } else {
       alert("Please enter both username and room name!");

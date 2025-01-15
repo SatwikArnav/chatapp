@@ -9,7 +9,7 @@ import io from "socket.io-client";
 
 
 function App() {
-  const socket = io('https://chatapp-nl9i.vercel.app/');
+  const socket = io('http://localhost:3001');
   return (
     <Router>
       <Routes>

@@ -72,3 +72,36 @@
 .animate-pulse-on-hover:hover {
     animation: pulse 1s infinite;
 }
+
+
+.sidebar-container {
+    position: relative;
+    width: 0.5rem; /* Tiny strip */
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #1e40af); /* Gradient background */
+    border-top-right-radius: 1rem; /* Rounded top-right edge */
+    border-bottom-right-radius: 1rem; /* Rounded bottom-right edge */
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  .sidebar-container:hover {
+    width: 16rem; /* Expanded width */
+  }
+  
+  .sidebar-container::before {
+    content: "☰"; /* Fancy icon (Hamburger menu) */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: white;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar-container:hover::before {
+    opacity: 0; /* Hide the icon when expanded */
+  }
+  
