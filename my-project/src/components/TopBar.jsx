@@ -11,7 +11,7 @@ const Topbar = ({ startVideoCall }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 text-white h-18 md:h-16 w-full fixed top-0 z-10 shadow-md">
+    <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 text-white h-19 md:h-16 w-full fixed top-0 z-10 shadow-md">
       
       {/* Left Section */}
       <div className="flex items-center space-x-2 md:space-x-4">
