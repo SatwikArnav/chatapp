@@ -105,3 +105,13 @@
     opacity: 0; /* Hide the icon when expanded */
   }
   
+
+  .video-call {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 300px;
+    height: 200px;
+    border: 2px solid white;
+  }
+   

@@ -52,7 +52,7 @@ const Sidebar = ({ rooms, searchTerm, setSearchTerm, socket , setRoom}) => {
         )}
       </ul>
       <div className='flex items-center justify-center'>
-      <Link to="/" >
+      <Link to={`/join/${username}`} >
       
         Create/Join Room
         </Link>

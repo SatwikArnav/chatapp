@@ -7,14 +7,14 @@ const redis = require("./client.js");
 const app = express();
 const server = http.createServer(app);
 
+const Signinrouter = require("./signin");  // ✅ Fixed Import
+const Signuprouter = require("./signup");  // ✅ Fixed Import
+console.log(process.env.username);
 app.use(cors());
+app.use(express.json());  // ✅ Required for parsing JSON body
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
+app.use("/signin", Signinrouter);
+app.use("/signup", Signuprouter);
 
 // Routes
 app.get("/", (req, res) => {
@@ -34,14 +34,18 @@ app.get("/rooms/:username", async (req, res) => {
 app.get("/chat/:room", async (req, res) => {
   try {
     const chatHistory = await redis.lrange(`chat:${req.params.room}`, 0, -1);
-    res.json(chatHistory.map((msg) => {
-      try {
-        return JSON.parse(msg);
-      } catch (err) {
-        console.error("Invalid message format:", msg);
-        return null; // Skip invalid messages
-      }
-    }).filter(Boolean)); // Filter out null values
+    res.json(
+      chatHistory
+        .map((msg) => {
+          try {
+            return JSON.parse(msg);
+          } catch (err) {
+            console.error("Invalid message format:", msg);
+            return null;
+          }
+        })
+        .filter(Boolean)
+    );
   } catch (err) {
     console.error("Error retrieving chat history:", err);
     res.status(500).send("Error retrieving chat history");
@@ -49,10 +53,16 @@ app.get("/chat/:room", async (req, res) => {
 });
 
 // Socket.IO Events
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
-  // Join Room
   socket.on("join_room", async (data) => {
     try {
       const { username, roomName } = data;
@@ -62,7 +72,6 @@ io.on("connection", (socket) => {
       }
       socket.join(roomName);
 
-      // Add the room to the user's room list in Redis (if not already present)
       const existingRooms = await redis.lrange(`chat:${username}`, 0, -1);
       if (!existingRooms.includes(roomName)) {
         await redis.rpush(`chat:${username}`, roomName);
@@ -74,7 +83,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Send Message
   socket.on("send_message", async (data) => {
     try {
       const { room, author, message, time } = data;
@@ -83,10 +91,7 @@ io.on("connection", (socket) => {
         return;
       }
 
-      // Emit message to others in the room
       socket.to(room).emit("receive_message", data);
-
-      // Save the message to Redis
       await redis.rpush(`chat:${room}`, JSON.stringify(data));
       console.log("Message saved:", data);
     } catch (err) {
@@ -94,9 +99,12 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Disconnect Event
+  socket.on("video_signal", (data) => {
+    socket.to(data.room).emit("video_signal", data);
+  });
+
   socket.on("disconnect", () => {
-    console.log(`User Disconnected: ${socket.id}`);
+    console.log("User Disconnected:", socket.id);
   });
 });
 
