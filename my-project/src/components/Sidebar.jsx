@@ -5,10 +5,22 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 
 
 
-const Sidebar = ({ rooms, searchTerm, setSearchTerm, socket , setRoom}) => {
+const Sidebar = ({ rooms, searchTerm, setSearchTerm, socket , setRoom,roomloader}) => {
   const { username } = useParams();
   const navigate = useNavigate();
-
+  if (roomloader) {
+    return (
+      <div className="flex grid place-items-center h-full bg-blue-600 text-white shadow-lg flex flex-col p-4 w-[16rem] overflow-hidden">
+      <div className="flex flex-1 justify-center items-center">
+                    <div className="relative flex justify-center items-center">
+                        <div className="absolute w-20 h-20 border-8 border-t-8 border-purple-500 rounded-full animate-spin"></div>
+                        <div className="absolute w-16 h-16 border-8 border-t-8 border-indigo-400 rounded-full animate-pulse"></div>
+                        <span className="absolute text-white font-bold text-lg animate-bounce">🔄</span>
+                    </div>
+                </div>
+      </div>
+    )
+  }
   return (
     <div className="h-full bg-blue-600 text-white shadow-lg flex flex-col p-4 w-[16rem] overflow-hidden">
       {/* Header */}

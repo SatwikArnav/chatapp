@@ -19,14 +19,18 @@ const Chat = ({ socket }) => {
 const [isVideoCallActive, setIsVideoCallActive] = useState(false);
 const [localStream, setLocalStream] = useState(null);
 const [videoElement, setVideoElement] = useState(null);
-
+const [chatloader,setchatloader]=useState(true);
+const [roomloader,setroomloader]=useState(true);
   
     
     useEffect(() => {
+      setchatloader(true);
+      setroomloader(true);
       const fetchMessages = async () => {
         try {
           const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/chat/${room}`);
           setMessageList(response.data);
+          setchatloader(false);
         } catch (error) {
           console.error('Error fetching messages:', error);
         }
@@ -38,6 +42,7 @@ const [videoElement, setVideoElement] = useState(null);
         try {
           const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/rooms/${username}`);
           setRooms(response.data);
+          setroomloader(false);
         } catch (error) {
           console.error('Error fetching rooms:', error);
         }
@@ -184,6 +189,7 @@ const [videoElement, setVideoElement] = useState(null);
           setSearchTerm={setSearchTerm}
           setRoom={setRoom}
           socket={socket}
+          roomloader={roomloader}
         />
       </div>
       <div className="flex-1 flex flex-col bg-white shadow-md">
@@ -193,7 +199,13 @@ const [videoElement, setVideoElement] = useState(null);
         
         <div className="flex-1 mt-[4rem] overflow-y-auto ">
         
-          <Chatbody className="p-4" messageList={messageList}  setMessageList={setMessageList} rooom={room} />
+        <Chatbody
+  className="p-4"
+  messageList={messageList}
+  setMessageList={setMessageList}
+  room={room}  // Fixing typo from "rooom" to "room"
+  chatloader={chatloader} // Fix capitalization
+/>
          
         </div>
         {remoteStream && isVideoCallActive && (
