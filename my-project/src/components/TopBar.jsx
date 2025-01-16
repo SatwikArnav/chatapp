@@ -8,50 +8,48 @@ import { useNavigate } from "react-router-dom";
 const Topbar = ({ startVideoCall }) => {
   const { room, username } = useParams();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate(); // ✅ Move this inside the component
+  const navigate = useNavigate(); 
 
   return (
     <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 text-white h-16 w-full fixed top-0 z-10 shadow-lg">
       {/* Left Section */}
       <div className="flex items-center space-x-4">
         <Link to={`/home/${username}`}>
-        <img src={logo} alt="logo" className="w-12 h-12 rounded-full hover:bg-blue-600 p-1" />
+          <img src={logo} alt="logo" className="w-10 h-10 md:w-12 md:h-12 rounded-full hover:bg-blue-600 p-1" />
         </Link>
-        <h1 className="text-xl font-semibold">{room}</h1>
+        <h1 className="text-lg md:text-xl font-semibold truncate max-w-[120px] md:max-w-none">{room}</h1>
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-3 md:space-x-4">
         <button
           onClick={startVideoCall}
-          className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg shadow-md"
+          className="bg-green-500 hover:bg-green-600 text-white py-1 px-3 md:py-2 md:px-4 rounded-lg shadow-md text-sm md:text-base"
         >
-          Start Video Call
+          Start Video
         </button>
         <div className="relative">
           <button
-            className="text-white flex items-center space-x-2 hover:bg-purple-600 rounded-full p-2 "
+            className="text-white flex items-center space-x-1 md:space-x-2 hover:bg-purple-600 rounded-full p-1 md:p-2"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            <img src={th} alt="profile" className="w-10 h-10 rounded-full" />
-            <span>{username}</span>
+            <img src={th} alt="profile" className="w-8 h-8 md:w-10 md:h-10 rounded-full" />
+            <span className="hidden md:inline">{username}</span>
           </button>
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden">
+            <div className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden">
               <button
-                className="block w-full px-4 py-2 text-left hover:bg-purple-600"
-                onClick={() => {
-                  setDropdownOpen(false);
-                }}
+                className="block w-full px-3 py-2 text-left hover:bg-purple-600"
+                onClick={() => setDropdownOpen(false)}
               >
                 ⚙️ Settings
               </button>
               <button
-                className="block w-full px-4 py-2 text-left hover:bg-purple-600"
+                className="block w-full px-3 py-2 text-left hover:bg-purple-600"
                 onClick={() => {
                   setDropdownOpen(false);
                   window.localStorage.removeItem("username");
-                  navigate("/"); // ✅ This will now work
+                  navigate("/");
                 }}
               >
                 🚪 Sign Out
