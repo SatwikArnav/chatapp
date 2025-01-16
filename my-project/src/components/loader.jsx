@@ -103,7 +103,8 @@ const AnimatedBike = () => {
         </g>
       </svg>
 
-      <style jsx>{`
+      {/* Regular <style> tag for CSS */}
+      <style>{`
         @keyframes bikeBody {
           from { stroke-dashoffset: 79; }
           33%, 67% { stroke-dashoffset: 0; }
