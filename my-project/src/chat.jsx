@@ -175,6 +175,7 @@ const [videoElement, setVideoElement] = useState(null);
   
 
   return (
+    
     <div className="flex h-screen bg-gray-100">
       <div className="sidebar-container relative">
         <Sidebar
@@ -190,7 +191,7 @@ const [videoElement, setVideoElement] = useState(null);
           <Topbar className="bg-blue-500 text-white p-4 shadow"  startVideoCall={startVideoCall}/>
         </div>
         
-        <div className="flex-1 mt-[4rem] overflow-y-auto">
+        <div className="flex-1 mt-[4rem] overflow-y-auto ">
         
           <Chatbody className="p-4" messageList={messageList}  setMessageList={setMessageList} rooom={room} />
          
