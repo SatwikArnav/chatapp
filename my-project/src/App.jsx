@@ -10,7 +10,7 @@ import io from "socket.io-client";
 
 
 function App() {
-  const socket = io(`https://chatapp-2-cj5m.onrender.com`);
+  const socket = io(`https://chatapp-6-t5k7.onrender.com`);
   return (
     <Router>
       <Routes>

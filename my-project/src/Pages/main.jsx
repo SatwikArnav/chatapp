@@ -10,7 +10,7 @@ const Home = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`https://chatapp-2-cj5m.onrender.com/rooms/${username}`)
+    fetch(`https://chatapp-6-t5k7.onrender.com/rooms/${username}`)
       .then(response => response.json())
       .then(data => setRooms(data))
       .catch(error => console.error("Error fetching rooms:", error));

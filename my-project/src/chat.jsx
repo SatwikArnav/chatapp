@@ -25,7 +25,7 @@ const [videoElement, setVideoElement] = useState(null);
     useEffect(() => {
       const fetchMessages = async () => {
         try {
-          const response = await axios.get(`https://chatapp-2-cj5m.onrender.com/chat/${room}`);
+          const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/chat/${room}`);
           setMessageList(response.data);
         } catch (error) {
           console.error('Error fetching messages:', error);
@@ -36,7 +36,7 @@ const [videoElement, setVideoElement] = useState(null);
   
       const fetchRooms = async () => {
         try {
-          const response = await axios.get(`https://chatapp-2-cj5m.onrender.com/rooms/${username}`);
+          const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/rooms/${username}`);
           setRooms(response.data);
         } catch (error) {
           console.error('Error fetching rooms:', error);
