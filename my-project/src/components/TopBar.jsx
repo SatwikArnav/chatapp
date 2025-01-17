@@ -14,11 +14,11 @@ const Topbar = ({ startVideoCall }) => {
     <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 text-white h-20 md:h-16 w-full fixed top-0 z-10 shadow-md">
       
       {/* Left Section */}
-      <div className="flex items-center space-x-2 md:space-x-4">
+      <div className="flex items-center space-x-4">
         <Link to={`/home/${username}`}>
-          <img src={logo} alt="logo" className="w-8 h-8 md:w-12 md:h-12 rounded-full hover:bg-blue-600 p-1" />
+          <img src={logo} alt="logo" className="w-12 h-12 rounded-full hover:bg-blue-600 p-1" />
         </Link>
-        <h1 className="text-sm md:text-lg font-semibold truncate max-w-[100px] md:max-w-none">{room}</h1>
+        <h1 className="text-sm md:text-lg font-semibold truncate ">{room}</h1>
       </div>
 
       {/* Right Section */}
