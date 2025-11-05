@@ -16,7 +16,8 @@ const AuthPage = ({ type }) => {
     e.preventDefault();
     setError(""); // Clear previous errors
 
-    const apiUrl = isSignup ? `https://chatapp-6-t5k7.onrender.com/signup` : `https://chatapp-6-t5k7.onrender.com/signin`;
+    const apiUrl = isSignup ? `h
+    https://chatapp-2-cj5m.onrender.com/signup` : `https://chatapp-2-cj5m.onrender.com/signin`;
 
     // Prepare request payload
     const payload = { username, password };
