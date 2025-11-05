@@ -28,7 +28,7 @@ const [roomloader,setroomloader]=useState(true);
       setroomloader(true);
       const fetchMessages = async () => {
         try {
-          const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/chat/${room}`);
+          const response = await axios.get(`https://chatapp-2-cj5m.onrender.com/chat/${room}`);
           setMessageList(response.data);
           setchatloader(false);
         } catch (error) {
@@ -40,7 +40,7 @@ const [roomloader,setroomloader]=useState(true);
   
       const fetchRooms = async () => {
         try {
-          const response = await axios.get(`https://chatapp-6-t5k7.onrender.com/rooms/${username}`);
+          const response = await axios.get(`https://chatapp-2-cj5m.onrender.com/rooms/${username}`);
           setRooms(response.data);
           setroomloader(false);
         } catch (error) {
